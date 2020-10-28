@@ -1,8 +1,9 @@
 import React from 'react';
+import Signup from './pages/Signup';
 
 const App: React.FC = () => (
   <div>
-    <h1>Olá mundo</h1>
+    <Signup />
   </div>
 );
 
