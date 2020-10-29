@@ -1,4 +1,6 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loadUser } from '../store/modules/auth/actions';
 
 interface User {
   name: string;
@@ -24,11 +26,13 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
+  const dispatch = useDispatch();
   const [data, setData] = useState<AuthState>(() => {
-    const user = localStorage.getItem('@Wowflix:user');
+    const userStoraged = localStorage.getItem('@Wowflix:user');
 
-    if (user) {
-      return { user: JSON.parse(user) };
+    if (userStoraged) {
+      const user = JSON.parse(userStoraged);
+      dispatch(loadUser(user));
     }
 
     return {} as AuthState;
