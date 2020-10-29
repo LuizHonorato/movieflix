@@ -10,7 +10,6 @@ import logoImg from '../../assets/logo.svg';
 import { Container, AnimationContainer } from './styles';
 import Button from '../../components/Button';
 import { useToast } from '../../hooks/toast';
-import { useAuth } from '../../hooks/auth';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 interface SignupFormData {
@@ -23,7 +22,6 @@ const Signup: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const history = useHistory();
-  const { signUp } = useAuth();
 
   const handleSubmit = useCallback(
     async (data: SignupFormData) => {
@@ -42,11 +40,7 @@ const Signup: React.FC = () => {
           abortEarly: false,
         });
 
-        signUp({
-          name: data.name,
-          email: data.email,
-          password: data.password,
-        });
+        localStorage.setItem('@Wowflix:user', JSON.stringify(data));
 
         history.push('/');
       } catch (err) {
@@ -63,7 +57,7 @@ const Signup: React.FC = () => {
         });
       }
     },
-    [signUp, addToast, history],
+    [addToast, history],
   );
 
   return (
