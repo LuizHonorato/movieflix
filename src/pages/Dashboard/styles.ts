@@ -16,6 +16,7 @@ export const HeaderContent = styled.div`
   ul {
     display: flex;
     list-style: none;
+    margin-left: 40px;
   }
 
   ul li {
@@ -36,27 +37,8 @@ export const HeaderContent = styled.div`
   }
 `;
 
-export const Profile = styled.div`
+export const NavContent = styled.div`
   display: flex;
-  align-items: center;
-
-  div {
-    display: flex;
-    flex-direction: column;
-    margin-left: 16px;
-    line-height: 24px;
-    font-size: 18px;
-    span {
-      color: #f4ede8;
-    }
-    a {
-      text-decoration: none;
-      color: #fff;
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-  }
 `;
 
 export const Dropdown = styled.div`
@@ -79,6 +61,7 @@ export const DropdownContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-left: 0;
   }
 
   ul li {
@@ -108,6 +91,14 @@ export const DropdownContent = styled.div`
 `;
 
 export const AvatarArea = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  svg {
+    margin-left: 10px;
+  }
+
   img {
     width: 56px;
     height: 56px;
@@ -119,3 +110,5 @@ export const AvatarArea = styled.div`
     opacity: 1;
   }
 `;
+
+export const Content = styled.div``;

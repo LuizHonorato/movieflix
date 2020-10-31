@@ -1,11 +1,20 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import promise from 'redux-promise';
 import { IUserState } from './modules/auth/types';
+import { IMoviesState } from './modules/movies/types';
 import rootReducer from './modules/rootReducer';
 
 export interface IState {
   auth: IUserState;
+  movies: IMoviesState;
 }
 
-const store = createStore(rootReducer);
+const middlewares = [promise];
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(...middlewares)),
+);
 
 export default store;
