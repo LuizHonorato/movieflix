@@ -45,11 +45,7 @@ const CarouselComponent: React.FC<CarouselProps> = ({
         responsive={responsive}
       >
         {movies.map(movie => (
-          <MovieComponent
-            key={movie.id}
-            title={movie.title}
-            poster_path={movie.poster_path}
-          />
+          <MovieComponent key={movie.id} movie={movie} />
         ))}
       </Carousel>
     </CarouselMain>

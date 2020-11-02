@@ -1,4 +1,5 @@
 import api from '../../../services/api';
+import { Movie } from './types';
 
 export function loadNetflixOriginals(): object {
   const response = api.get(
@@ -63,5 +64,23 @@ export function loadDramaMovies(): object {
   return {
     type: 'LOAD_DRAMA_MOVIES',
     payload: response,
+  };
+}
+
+export function addMovieToMyList(movie: Movie): object {
+  return {
+    type: 'ADD_MOVIE_TO_MY_LIST',
+    payload: {
+      movie,
+    },
+  };
+}
+
+export function removeMovieFromMyList(movie: Movie): object {
+  return {
+    type: 'REMOVE_MOVIE_FROM_MY_LIST',
+    payload: {
+      movie,
+    },
   };
 }

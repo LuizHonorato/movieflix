@@ -12,6 +12,10 @@ export const CarouselMain = styled.div`
 
   .carousel-container ul li {
     width: 340px !important;
+
+    div {
+      width: 100%;
+    }
   }
 
   .carousel-container ul li div {

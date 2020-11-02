@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AiFillCaretDown } from 'react-icons/ai';
-
 import {
   Container,
   Header,
@@ -31,7 +30,13 @@ import {
 
 const Dashboard: React.FC = () => {
   const dispatch = useDispatch();
+
   const user = useSelector<IState, User | null>(state => state.auth.user);
+
+  const myList = useSelector<IState, Movie[] | []>(
+    state => state.movies.my_list,
+  );
+
   const actionMovies = useSelector<IState, Movie[] | []>(
     state => state.movies.action_movies,
   );
@@ -126,6 +131,9 @@ const Dashboard: React.FC = () => {
         </HeaderContent>
       </Header>
       <Content>
+        {myList.length > 0 && (
+          <CarouselComponent category_title="Minha lista" movies={myList} />
+        )}
         <CarouselComponent
           category_title="Originais Wowflix"
           movies={loadNetflixOriginalsMedias}
