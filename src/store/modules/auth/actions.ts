@@ -1,4 +1,3 @@
-import api from '../../../services/api';
 import { User } from './types';
 
 export function loadUser(user: User): object {

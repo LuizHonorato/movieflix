@@ -1,7 +1,7 @@
 import api from '../../../services/api';
 import { Movie } from './types';
 
-export function loadNetflixOriginals(): object {
+export async function loadNetflixOriginals(): Promise<object> {
   const response = api.get(
     `/discover/tv?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&with_networks=213`,
   );
@@ -12,7 +12,7 @@ export function loadNetflixOriginals(): object {
   };
 }
 
-export function loadTrendingMovies(): object {
+export async function loadTrendingMovies(): Promise<object> {
   const response = api.get(
     `/trending/all/week?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&language=en-US`,
   );
@@ -23,7 +23,7 @@ export function loadTrendingMovies(): object {
   };
 }
 
-export function loadActionMovies(): object {
+export async function loadActionMovies(): Promise<object> {
   const response = api.get(
     `discover/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&with_genres=28`,
   );
@@ -34,7 +34,7 @@ export function loadActionMovies(): object {
   };
 }
 
-export function loadAdventureMovies(): object {
+export async function loadAdventureMovies(): Promise<object> {
   const response = api.get(
     `discover/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&with_genres=12`,
   );
@@ -45,7 +45,7 @@ export function loadAdventureMovies(): object {
   };
 }
 
-export function loadCommedyMovies(): object {
+export async function loadCommedyMovies(): Promise<object> {
   const response = api.get(
     `discover/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&with_genres=35`,
   );
@@ -56,7 +56,7 @@ export function loadCommedyMovies(): object {
   };
 }
 
-export function loadDramaMovies(): object {
+export async function loadDramaMovies(): Promise<object> {
   const response = api.get(
     `discover/movie?api_key=${process.env.REACT_APP_MOVIEDB_API_KEY}&with_genres=18`,
   );
