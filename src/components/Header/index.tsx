@@ -28,9 +28,6 @@ const HeaderComponent: React.FC = () => {
               <Link to="/dashboard">Filmes</Link>
             </li>
             <li>
-              <Link to="/dashboard">Séries</Link>
-            </li>
-            <li>
               <Link to="/my-list">Minha lista</Link>
             </li>
           </ul>

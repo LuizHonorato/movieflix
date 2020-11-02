@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { FaCalendarTimes, FaCheck, FaPlay, FaPlus } from 'react-icons/fa';
+import { FaCheck, FaPlay, FaPlus } from 'react-icons/fa';
 import { FiArrowLeft } from 'react-icons/fi';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';

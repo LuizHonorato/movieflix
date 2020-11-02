@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadUser } from '../store/modules/auth/actions';
 
@@ -20,10 +20,9 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const dispatch = useDispatch();
+  const userStoraged = localStorage.getItem('@Wowflix:user');
 
   const [data, setData] = useState<AuthState>(() => {
-    const userStoraged = localStorage.getItem('@Wowflix:user');
-
     if (userStoraged) {
       const user = JSON.parse(userStoraged);
       dispatch(loadUser(user));
@@ -31,6 +30,13 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     return {} as AuthState;
   });
+
+  useEffect(() => {
+    if (userStoraged) {
+      const user = JSON.parse(userStoraged);
+      setData(user);
+    }
+  }, [userStoraged]);
 
   return (
     <AuthContext.Provider
