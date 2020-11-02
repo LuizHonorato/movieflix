@@ -1,6 +1,7 @@
+import { shade } from 'polished';
 import styled from 'styled-components';
 
-export const Movie = styled.div`
+export const MovieContainer = styled.div`
   margin: 0 28px;
   flex: 1 1 auto;
   display: inline-block;

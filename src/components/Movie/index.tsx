@@ -1,23 +1,30 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Movie } from '../../store/modules/movies/types';
 
-import { Movie, MovieContent } from './styles';
+import { MovieContainer, MovieContent } from './styles';
 
 interface MovieProps {
-  poster_path?: string;
-  title: string;
+  movie: Movie;
 }
 
-const MovieComponent: React.FC<MovieProps> = ({ poster_path, title }) => {
-  console.log(title);
+const MovieComponent: React.FC<MovieProps> = ({ movie }) => {
   return (
-    <Movie>
-      <MovieContent>
-        <img
-          src={`https://image.tmdb.org/t/p/original/${poster_path}`}
-          alt={title}
-        />
-      </MovieContent>
-    </Movie>
+    <MovieContainer>
+      <Link
+        to={{
+          pathname: '/details',
+          state: { movie },
+        }}
+      >
+        <MovieContent>
+          <img
+            src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+            alt={movie.name}
+          />
+        </MovieContent>
+      </Link>
+    </MovieContainer>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadUser } from '../store/modules/auth/actions';
 
@@ -12,21 +12,15 @@ interface AuthState {
   user: User;
 }
 
-interface SignupData {
-  name: string;
-  email: string;
-  password: string;
-}
-
 interface AuthContextData {
   user: User;
-  signUp(data: SignupData): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const dispatch = useDispatch();
+
   const [data, setData] = useState<AuthState>(() => {
     const userStoraged = localStorage.getItem('@Wowflix:user');
 
@@ -38,20 +32,10 @@ export const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthState;
   });
 
-  const signUp = useCallback(
-    (user: User) => {
-      localStorage.setItem('@Wowflix:user', JSON.stringify(user));
-
-      setData({ user });
-    },
-    [setData],
-  );
-
   return (
     <AuthContext.Provider
       value={{
         user: data.user,
-        signUp,
       }}
     >
       {children}

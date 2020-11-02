@@ -1,8 +1,8 @@
 export interface Movie {
   poster_path?: string;
-  description: string;
+  overview: string;
   id: number;
-  title: string;
+  name: string;
   release_date: Date;
   vote_average: number;
   backdrop_path: string;
