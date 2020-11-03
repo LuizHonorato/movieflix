@@ -110,7 +110,7 @@ export const BackgroundArea = styled.div`
 
 export const Background = styled.div<BackgroundProps>`
   flex: 1;
-  background: url(${props => props.poster_path}) no-repeat center;
+  background: url(${props => props.poster_path}) no-repeat;
   background-size: cover;
   width: 780px;
 `;

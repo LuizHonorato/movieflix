@@ -1,6 +1,6 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 import { AiFillCaretDown } from 'react-icons/ai';
 import { User } from '../../store/modules/auth/types';
 import {
@@ -14,10 +14,22 @@ import {
 
 import logoImg from '../../assets/logo.svg';
 import avatarImg from '../../assets/avatar-wow-flix.png';
+import { logout } from '../../store/modules/auth/actions';
 import { IState } from '../../store';
 
 const HeaderComponent: React.FC = () => {
   const user = useSelector<IState, User | null>(state => state.auth.user);
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const logoutUser = useCallback(() => {
+    localStorage.removeItem('@Wowflix:user');
+
+    dispatch(logout());
+
+    history.push('/');
+  }, [history, dispatch]);
+
   return (
     <Header>
       <HeaderContent>
@@ -47,10 +59,9 @@ const HeaderComponent: React.FC = () => {
                   <Link to="/profile">Minha conta</Link>
                 </li>
                 <li>
-                  <Link to="/dashboard">Planos</Link>
-                </li>
-                <li>
-                  <Link to="/my-list">Sair</Link>
+                  <button type="button" onClick={logoutUser}>
+                    Sair
+                  </button>
                 </li>
               </ul>
             </DropdownContent>
