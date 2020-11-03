@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MovieContainer = styled.div`
-  margin: 0 28px;
+  margin: 28px;
   display: flex;
 `;
 

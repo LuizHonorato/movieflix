@@ -7,7 +7,20 @@ const INITIAL_STATE: IUserState = {
 
 const auth: Reducer<IUserState> = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case 'SIGNUP': {
+      return {
+        ...state,
+        user: { ...action.payload.user },
+      };
+    }
     case 'SIGNIN': {
+      return {
+        ...state,
+        user: { ...state.user, is_online: true },
+      };
+    }
+
+    case 'UPDATE_USER': {
       return {
         ...state,
         user: { ...action.payload.user },
@@ -18,6 +31,13 @@ const auth: Reducer<IUserState> = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         user: { ...action.payload.user },
+      };
+    }
+
+    case 'LOGOUT': {
+      return {
+        ...state,
+        user: { ...state.user, is_online: false },
       };
     }
 

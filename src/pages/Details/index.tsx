@@ -3,6 +3,7 @@ import { FaCheck, FaPlay, FaPlus } from 'react-icons/fa';
 import { FiArrowLeft } from 'react-icons/fi';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
+import { useToast } from '../../hooks/toast';
 import { IState } from '../../store';
 import {
   addMovieToMyList,
@@ -27,6 +28,7 @@ interface LocationProps {
 
 const Details: React.FC = () => {
   const location = useLocation<LocationProps>();
+  const { addToast } = useToast();
   const history = useHistory();
   const dispatch = useDispatch();
   const [isFavorite, setIsFavorite] = useState(false);
@@ -41,8 +43,6 @@ const Details: React.FC = () => {
       myList.forEach(movie => {
         if (movie.id === location.state.movie.id) {
           setIsFavorite(true);
-        } else {
-          setIsFavorite(false);
         }
       });
     } else {
@@ -52,9 +52,27 @@ const Details: React.FC = () => {
 
   const hadleAddMovieToMyList = useCallback(
     (movie: Movie) => {
-      dispatch(addMovieToMyList(movie));
+      try {
+        if (myList.length > 0) {
+          myList.forEach(movie => {
+            if (movie.id === location.state.movie.id) {
+              throw new Error('Filme já salvo na sua lista!');
+            } else {
+              dispatch(addMovieToMyList(movie));
+            }
+          });
+        } else {
+          dispatch(addMovieToMyList(movie));
+        }
+      } catch (err) {
+        addToast({
+          type: 'error',
+          title: 'Ops...',
+          description: err.message,
+        });
+      }
     },
-    [dispatch],
+    [dispatch, myList, location, addToast],
   );
 
   const handleRemoveMovieFromMyList = useCallback(

@@ -5,6 +5,7 @@ export const CarouselMain = styled.div`
   flex-direction: column;
   max-width: 1070px;
   margin: 0 auto;
+  margin-bottom: 32px;
 
   .carousel-container {
     width: 100%;

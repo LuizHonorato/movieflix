@@ -25,6 +25,17 @@ export const HeaderContent = styled.div`
     font-weight: bold;
     margin-left: 40px;
   }
+
+  ul li button {
+    background: transparent;
+    height: 20px;
+    border: none;
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+  }
+
   ul li:first-child {
     margin: 0;
   }
@@ -32,6 +43,13 @@ export const HeaderContent = styled.div`
   ul li a {
     text-decoration: none;
     color: #fff;
+  }
+
+  @media (max-width: 800px) {
+    max-width: 700px;
+    ul {
+      display: none;
+    }
   }
 `;
 

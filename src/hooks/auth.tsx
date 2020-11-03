@@ -6,6 +6,7 @@ interface User {
   name: string;
   email: string;
   password: string;
+  is_online: boolean;
 }
 
 interface AuthState {
@@ -19,24 +20,24 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
+  const user = localStorage.getItem('@Wowflix:user');
   const dispatch = useDispatch();
-  const userStoraged = localStorage.getItem('@Wowflix:user');
 
   const [data, setData] = useState<AuthState>(() => {
-    if (userStoraged) {
-      const user = JSON.parse(userStoraged);
-      dispatch(loadUser(user));
+    if (user) {
+      dispatch(loadUser(JSON.parse(user)));
+
+      return { user: JSON.parse(user) };
     }
 
     return {} as AuthState;
   });
 
   useEffect(() => {
-    if (userStoraged) {
-      const user = JSON.parse(userStoraged);
-      setData(user);
+    if (user) {
+      setData(JSON.parse(user));
     }
-  }, [userStoraged]);
+  }, [user]);
 
   return (
     <AuthContext.Provider

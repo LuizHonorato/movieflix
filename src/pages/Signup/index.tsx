@@ -1,4 +1,5 @@
 import React, { useCallback, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -11,15 +12,21 @@ import { Container, AnimationContainer } from './styles';
 import Button from '../../components/Button';
 import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
+import { signUp } from '../../store/modules/auth/actions';
+import { IState } from '../../store';
+import { User } from '../../store/modules/auth/types';
 
 interface SignupFormData {
   name: string;
   email: string;
   password: string;
+  is_online: boolean;
 }
 
 const Signup: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const user = useSelector<IState, User | null>(state => state.auth.user);
+  const dispatch = useDispatch();
   const { addToast } = useToast();
   const history = useHistory();
 
@@ -40,9 +47,21 @@ const Signup: React.FC = () => {
           abortEarly: false,
         });
 
-        localStorage.setItem('@Wowflix:user', JSON.stringify(data));
+        if (user) {
+          if (user.email === data.email) {
+            throw new Error('Usuário já cadastrado!');
+          }
+        }
+
+        dispatch(signUp(data));
 
         history.push('/');
+
+        addToast({
+          type: 'success',
+          title: 'Usuário cadastrado com sucesso',
+          description: 'Faça login para encontrar seus filmes favoritos!',
+        });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -53,11 +72,11 @@ const Signup: React.FC = () => {
         addToast({
           type: 'error',
           title: 'Erro na inscrição',
-          description: 'Ocorreu um erro ao fazer o cadastro, tente novamente',
+          description: err.message,
         });
       }
     },
-    [addToast, history],
+    [addToast, history, user, dispatch],
   );
 
   return (

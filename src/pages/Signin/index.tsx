@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -14,11 +14,13 @@ import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { signIn } from '../../store/modules/auth/actions';
 import { User } from '../../store/modules/auth/types';
+import { IState } from '../../store';
 
 const Signin: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const history = useHistory();
+  const user = useSelector<IState, User | null>(state => state.auth.user);
   const dispatch = useDispatch();
 
   const handleSubmit = useCallback(
@@ -37,13 +39,11 @@ const Signin: React.FC = () => {
           abortEarly: false,
         });
 
-        const userStoraged = localStorage.getItem('@Wowflix:user');
-
-        if (userStoraged) {
-          const user = JSON.parse(userStoraged);
-
+        if (user) {
           if (data.password === user.password) {
             dispatch(signIn(user));
+            data.is_online = true;
+            localStorage.setItem('@Wowflix:user', JSON.stringify(data));
           } else {
             throw new Error('Email e/ou senha incorretos');
           }
@@ -66,7 +66,7 @@ const Signin: React.FC = () => {
         });
       }
     },
-    [addToast, dispatch, history],
+    [addToast, dispatch, history, user],
   );
 
   return (

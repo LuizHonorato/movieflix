@@ -25,6 +25,11 @@ export const SearchArea = styled.div`
   display: flex;
   align-items: center;
 
+  @media (max-width: 800px) {
+    width: 80%;
+    margin-left: 16px;
+  }
+
   input {
     flex: 1;
     background: transparent;
