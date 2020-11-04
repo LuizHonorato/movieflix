@@ -43,7 +43,7 @@ const Signin: React.FC = () => {
           if (data.password === user.password) {
             dispatch(signIn(user));
             data.is_online = true;
-            localStorage.setItem('@Wowflix:user', JSON.stringify(data));
+            localStorage.setItem('@Movieflix:user', JSON.stringify(data));
           } else {
             throw new Error('Email e/ou senha incorretos');
           }
@@ -74,7 +74,7 @@ const Signin: React.FC = () => {
       <Background />
       <Content>
         <AnimationContainer>
-          <img src={logoImg} alt="Logo Wowflix" />
+          <img src={logoImg} alt="Logo Movieflix" />
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Entrar</h1>
             <Input icon={FiMail} name="email" placeholder="E-mail" />

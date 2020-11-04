@@ -13,7 +13,7 @@ import {
 } from './styles';
 
 import logoImg from '../../assets/logo.svg';
-import avatarImg from '../../assets/avatar-wow-flix.png';
+import avatarImg from '../../assets/avatar-movie-flix.png';
 import { logout } from '../../store/modules/auth/actions';
 import { IState } from '../../store';
 
@@ -23,7 +23,7 @@ const HeaderComponent: React.FC = () => {
   const dispatch = useDispatch();
 
   const logoutUser = useCallback(() => {
-    localStorage.removeItem('@Wowflix:user');
+    localStorage.removeItem('@Movieflix:user');
 
     dispatch(logout());
 
@@ -34,7 +34,7 @@ const HeaderComponent: React.FC = () => {
     <Header>
       <HeaderContent>
         <NavContent>
-          <img src={logoImg} alt="Wowflix Logo" />
+          <img src={logoImg} alt="Movieflix Logo" />
           <ul>
             <li>
               <Link to="/dashboard">Filmes</Link>

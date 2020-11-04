@@ -1,6 +1,6 @@
 # Introdução
 
-Wowflix - Aplicação para listagem de filmes (API https://themoviedb.org).
+Movieflix - Aplicação para listagem de filmes (API https://themoviedb.org).
 
 # Sobre o build
 
@@ -18,7 +18,7 @@ Frontend:
 
 Frontend:
 
-- Clonar esse repositório com o comando: https://github.com/LuizHonorato/wowflix.git
+- Clonar esse repositório com o comando: https://github.com/LuizHonorato/movieflix.git
 
 - É necessário criar uma conta no The MovieDB, ir até o menu, opção Configuração, na página de configuração ir até a opção API e gerar uma nova chave.
 

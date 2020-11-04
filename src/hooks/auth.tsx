@@ -20,7 +20,7 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const user = localStorage.getItem('@Wowflix:user');
+  const user = localStorage.getItem('@Movieflix:user');
   const dispatch = useDispatch();
 
   const [data, setData] = useState<AuthState>(() => {

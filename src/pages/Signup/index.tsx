@@ -82,7 +82,7 @@ const Signup: React.FC = () => {
   return (
     <Container>
       <AnimationContainer>
-        <img src={logoImg} alt="Logo Wowflix" />
+        <img src={logoImg} alt="Logo Movieflix" />
         <Form ref={formRef} onSubmit={handleSubmit}>
           <h1>Venha e pegue sua pipoca</h1>
           <Input icon={FiUser} name="name" placeholder="Nome" />

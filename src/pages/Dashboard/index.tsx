@@ -128,7 +128,7 @@ const Dashboard: React.FC = () => {
                   />
                 )}
                 <CarouselComponent
-                  category_title="Originais Wowflix"
+                  category_title="Originais Movieflix"
                   movies={loadNetflixOriginalsMedias}
                 />
                 <CarouselComponent
