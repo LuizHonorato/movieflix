@@ -40,6 +40,9 @@ export const AnimationContainer = styled.div`
   align-items: center;
   justify-content: center;
   animation: ${appearFromLeft} 1s;
+  img {
+    margin-left: 32px;
+  }
   form {
     margin: 60px 0 20px;
     width: 340px;

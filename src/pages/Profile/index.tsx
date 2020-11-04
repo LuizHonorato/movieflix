@@ -73,7 +73,7 @@ const Profile: React.FC = () => {
           is_online: true,
         };
 
-        localStorage.setItem('@Wowflix:user', JSON.stringify(updateUserData));
+        localStorage.setItem('@Movieflix:user', JSON.stringify(updateUserData));
 
         dispatch(updateUser(updateUserData));
 
